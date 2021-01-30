@@ -1,0 +1,19 @@
+[
+  {
+    "path": "posts/2021-01-30-welcome/",
+    "title": "welcome",
+    "description": "Welcome to my blog!",
+    "author": [
+      {
+        "name": "iris foxfoot",
+        "url": {}
+      }
+    ],
+    "date": "2021-01-30",
+    "categories": [],
+    "contents": "\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-01-30T09:04:14-08:00",
+    "input_file": {}
+  }
+]
