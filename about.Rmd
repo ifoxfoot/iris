@@ -7,6 +7,11 @@ description: "Some of my experiences"
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Interests
+I’m originally from the foothills of the Sierra Nevada Mountains, where I developed a deep appreciation for nature. Now I live in Truckee, CA where I love to hike, backpack, swim in the mountain streams, and snowboard. I also love to travel, and since graduating college in 2015, I’ve been to fifteen new countries! I funded my adventures by working as a wildlife technician in the summer and working at ski resorts in the winter.
 
-Experiences
+I’ve had some truly amazing experiences over the years. I’ve monitored carnivore populations in the Southern Sierra Nevada, I’ve trapped and collared fishers, I’ve worked as an outdoor educator, I’ve studied how fuels treatment affects squirrels, and I managed a research project investigating primate behavior in Ethiopia. 
+
+Now I’m a master’s student at UCSB, where I’m studying environmental science and management. I love making beautiful graphs and maps, learning about ecology, and working with my classmates to solve real-world environmental problems!
+
+
+![Here’s a picture of me with Gelada Monkeys in the Guassa conservation area of Ethiopia](monkey_in_grass.JPG)
