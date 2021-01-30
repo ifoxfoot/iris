@@ -1,13 +1,13 @@
 name: "."
-title: "iris"
+title: "Iris"
 description: |
-  iris
+  iris foxfoot
 output_dir: "docs"
 navbar:
   right:
     - text: "Home"
       href: index.html
-    - text: "About"
+    - text: "About Me"
       href: about.html
     - text: "Blog"
       href: blog.html
