@@ -1,5 +1,5 @@
 ---
-title: "California Cetaceans Raster Analysus"
+title: "California Cetaceans Raster Analysis"
 description: |
   In this post I will explore cetaceans species presence off of the coast of southern California using raster data!
 author:

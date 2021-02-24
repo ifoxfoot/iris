@@ -1,7 +1,7 @@
 [
   {
     "path": "posts/2021-02-24-california-cetaceans-raster-analysus/",
-    "title": "California Cetaceans Raster Analysus",
+    "title": "California Cetaceans Raster Analysis",
     "description": "In this post I will explore cetaceans species presence off of the coast of southern California using raster data!",
     "author": [
       {
@@ -13,8 +13,8 @@
     "categories": [],
     "contents": "\n\n\nshow code\n\nknitr::opts_chunk$set(\n  echo = TRUE,\n  message = FALSE,\n  warning = FALSE\n)\nlibrary(raster) ### NOTE: attaching this BEFORE tidyverse\nlibrary(tidyverse)\nlibrary(here)\nlibrary(sf)\n\n\n\n\n\nshow code\n\n#read in the data (this gathers it all up)\nmy_files <- list.files(here(\"ca_cetaceans\"), full.names = TRUE)\n\n#this reads in the data as a raster stack\ncetaceans_raster <- raster::stack(my_files)\n\n#this function determines if a cell has a .8 probability of containing a species.\nis_present <- function(x, thresh = .8) {\n  y <- ifelse(x >= thresh, 1, NA)\n  return(y)\n}\n\n#applying the function to the raster stack\nspecies <- calc(cetaceans_raster, fun = is_present) \n\n#adding up all the species presences in each cell\ncetaceans <- calc(species, fun = sum, na.rm = TRUE)  \n\n#plot it! For funsies\n#plot(cetaceans)\n\n#this converts the raster to a dataframe\ncetaceans_df <- raster::rasterToPoints(cetaceans) %>%\n  as.data.frame()\n\n#add some coastline from the rnaturalearth package\ncoastline110 <- rnaturalearth::ne_download(scale = 110, type = 'states', category = 'cultural', returnclass = \"sf\")\n\n#graph it\nggplot() + \n  geom_raster(data = cetaceans_df, aes(x=x,y=y, fill = layer)) + geom_sf(data = coastline110, color = \"black\", fill = \"darkgray\") + \n  coord_sf(expand = 0, xlim = c(-125, -115), ylim = c(32, 42)) +\n  scale_fill_gradientn(colors = c(\"white\", \"orchid\",\"purple\")) +\n  theme_void() +\n  theme(plot.caption = element_text(hjust = 0)) +\n  labs(caption = \"Species Richness of of the Coast of Southern California and Northern Baja\\neach cell shows the number of cetaceans for which there is an 80% chance\\nor higher that they are present. Data: Kaschner et al\")\n\n\n\n\nAquamaps Citation: Kaschner, K., Rius-Barile, J., Kesner-Reyes, K., Garilao, C., Kullander, S., Rees, T., & Froese, R. (2016). AquaMaps: Predicted range maps for aquatic species. www.aquamaps.org\n\n\n\n",
     "preview": "posts/2021-02-24-california-cetaceans-raster-analysus/california-cetaceans-raster-analysus_files/figure-html5/unnamed-chunk-2-1.png",
-    "last_modified": "2021-02-24T12:31:32-08:00",
-    "input_file": {}
+    "last_modified": "2021-02-24T12:40:44-08:00",
+    "input_file": "california-cetaceans-raster-analysus.utf8.md"
   },
   {
     "path": "posts/2021-02-24-palmetto-logistic-regression/",
