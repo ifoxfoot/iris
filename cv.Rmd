@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Iris Foxfoot
 
-[email](foxfoot@bren.ucsb.edu) \| (530) 559-6604 \| Nevada City, California
+foxfoot@bren.ucsb.edu \| (530) 559-6604 \| Nevada City, California
 
 **EDUCATION**
 
@@ -24,12 +24,12 @@ Honors: Dean's Honor List, Highest Honors | top 2.5 percentile of the class
 
 **LEADERSHIP AND PROJECT DESIGN EXPERIENCE**
 
-**Educational Guide** (5/19-Present, 6-15 hours per week)\
+**Educational Guide** (5/19-Present)\
 **Gateway Mountain Center, Truckee, CA**\
 • Mentor two youths, identified by the school district as being in danger of being left behind during online learning, by collaborating with their teachers to identify their academic needs, meeting with them weekly to provide one-on-one support, and monitoring their mental wellbeing via monthly electronic surveys and weekly in person check-ins\
 • Guide diverse groups of 8-12 students in the high sierra, creatively delivering nature-based lessons to foster an applied understanding of natural sciences and an appreciation of nature
 
-**Project Manager** (7/17-8/18, 45 hours per week)\
+**Project Manager** (7/17-8/18)\
 **Guassa Gelada Research Project, Ethiopia**\
 • Coordinated the in-country project budget, including staff paychecks, staff health insurance, food, transportation, and equipment, using Excel and paper documents to meet financial goals\
 • Designed a system to organize receipts and a system to track receiptless transactions to better monitor and document spending. This information was used to apply and qualify for grants\
@@ -38,31 +38,31 @@ Honors: Dean's Honor List, Highest Honors | top 2.5 percentile of the class
 • Censused over 200 gelada monkeys to individually track their behavior and demographics and conducted habitat and food source surveys as part of long-term research priorities\
 • Co-authored two papers, published in peer reviewed journals, detailing previously unstudied aspects of gelada ecology based on the data I collected
 
-**Independent Researcher, Raptor Predation** (1/18-8/18, 3 hours per week)\
+**Independent Researcher, Raptor Predation** (1/18-8/18)\
 **Guassa Gelada Research Project, Ethiopia**\
 • Designed and implemented a research project using point-counts recorded on customized digital datasheets to answer the following research question: Do raptors have increased foraging success when they hunt in proximity to gelada monkeys?\
 • Conducted point-counts of raptors within the proximity of gelada herds and returned when the geladas were absent to collect control point-counts, recorded all instances of rodent predation during observation periods. Used R-studio to analyze and visualize resulting data
 
 **WILDLIFE AND FORESTRY EXPERIENCE** 
 
-**ORISE Fellow (5/20-9/20, 40 hours per week)**\
+**ORISE Fellow** (5/20-9/20)\
 **USFS Region 5, Placerville, CA**\
 • Trapped and ear-tagged mice, squirrels, chipmunks, voles, etc. for capture-mark-recapture analysis to determine the effect of fuels reduction methods on small mammal populations\
 • Conducted vegetation surveys paired with wildlife survey points to determine the fuel load and regeneration rate of forests at wildlife study points
 
-**Volunteer Wildlife Technician (2/19, 40 hours per week)**\
+**Volunteer Wildlife Technician** (2/19)\
 **USFS Kings River Fisher Project, Shaver Lake, CA**\
 • Recorded the location of collared fishers using radio telemetry and a GPS to evaluate habitat use and to identify their denning sites\
 • Installed and checked a trap-lines using snowshoes during a three-week intensive trapping season. Released non-target species and assisted with GPS collaring and processing of adult fishers
 
-**SCA Wildlife Intern (5/16-9/16, 7/18-10/18, 40 hours per week)**\
+**SCA Wildlife Intern** (5/16-9/16, 7/18-10/18)\
 **U.S. Forest Service Fisher Project, Shaver Lake, CA**\
 • Installed Primary Sampling Units consisting of camera stations, trackplate boxes, and hair snares in Sierra and Sequoia National Forests to determine the presence/absence of carnivores\
 • Camped and backpacked for 4-day hitches, navigated off-trail using a map, GPS, and compass to install and service a cluster of 10-12 Primary Sampling Units\
 • Collected and identified tracks, photographs, and fur for genetic analysis of vulnerable species\
 • Labeled and tagged camera station photos using Daminion software for database entry, entered all data into Access database
 
-**Amphibian Conservation Intern (1/16-4/16, 10 hours per week)**\
+**Amphibian Conservation Intern** (1/16-4/16)\
 **Sierra Streams Institute, Nevada City, CA**\
 • Conducted habitat assessment and restoration projects on the banks of mountain streams to reduce erosion and improve native plant communities, surveyed streams and ponds in the Sierra Nevada for rare amphibians and aquatic invertebrates\
 • Sampled water from rivers and evaluated it in a lab for bacterial and chemical pollutants
@@ -70,6 +70,7 @@ Honors: Dean's Honor List, Highest Honors | top 2.5 percentile of the class
 **PUBLICATIONS**
 
 Venkataraman VV, Miller CM, **Foxfoot I**, et al. Epizoochorous seed dispersal by an Afromontane savanna primate. Biotropica (in revision)\
+
 Lin, B, **Foxfoot, IR**, Miller, CM, et al. [Leopard predation on gelada monkeys at Guassa, Ethiopia](https://onlinelibrary.wiley.com/doi/abs/10.1002/ajp.23098#:~:text=Geladas%20did%20not%20engage%20in,less%20likely%20to%20be%20detected). Am J Primatol. 2020; 82:e23098.
 
 **SKILLS, HONORS, AND CERTIFICATES**

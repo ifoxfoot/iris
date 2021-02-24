@@ -1,0 +1,117 @@
+---
+title: "Palmetto Binary Logistic Regression"
+description: |
+  In this post I will demonstrate a simple example of binary logistic regression using data on two palmetto species in florida.
+author:
+  - name: iris foxfoot
+    url: {}
+date: 02-24-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: show code
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+library(here)
+library(tidyverse)
+library(broom)
+library(jtools)
+library(janitor)
+library(kableExtra)
+library(knitr)
+```
+
+### Data Exploration & Vizualization
+```{r}
+#Read in the Data
+palmetto <- read_csv(here("palmetto.csv"))
+
+#rename species category because it's annoying
+palmetto$species[palmetto$species == "1"] <- "Serenoa repens"
+palmetto$species[palmetto$species == "2"] <- "Sabal etonia"
+
+#convert species to factor for analyses
+palmetto$species <-as.factor(palmetto$species)
+
+#view it, then make some exploratory graphs
+#1 = Serenoa repens, 2 = Sabal etonia
+
+ggplot(data = palmetto, aes(x = width, y = length, fill = species)) + 
+  geom_violin() + 
+  facet_wrap(~species) + 
+  scale_fill_manual(values=c('orange','black')) +
+  theme_minimal() +
+  theme(plot.caption = element_text(hjust = 0), legend.position = "none") +
+  labs(x = "width (cm)", y = "length (cm)",
+       caption = "Figure 1: Width and length of Sabal etonia vs Serenoa repens palmettos in South Central Florida (Data: Abrahamson)\nLength is defined as the widest area of the canopy and width is the widest area of the canpopy perpendicular to the \nlength. From this graph you can see that Sabal etonia has a slightly larger mean length.")
+
+ggplot(data = palmetto, aes(x = green_lvs, y = height, color = species)) + 
+  geom_point() + 
+  scale_color_manual(values=c('orange','black')) +
+  theme_minimal() +
+  theme(plot.caption = element_text(hjust = 0)) +
+  labs(x = "Number of Green Leaves", y = "Height (cm)",
+       caption = "Figure 2. Differences in number of green leaves vs height in Sabal Etonia and Serenoa repens (Data: Abrahamson)\nSerenoa repens tends to have a higher number of green leaves. It is difficult to tell if there is a meaningful difference in \nheight")
+
+```
+
+### Binary Logistic Regression
+```{r}
+#levels(palmetto$species)
+#seet is first level
+
+#binomial regression
+palmetto_blr <- glm(species ~ height + width + length + green_lvs, data = palmetto, family = "binomial")
+
+#call the model to view or summary of the model using summary()
+
+#tidy table
+broom::tidy(palmetto_blr) %>%
+  mutate(p.value = format(p.value, scientific = TRUE)) %>% 
+  kbl(caption = "Palmetto Binary Logistic Regression Model Outputs - Reference Level = Sabal etonia (Data: Abrahamson)") %>% 
+  kable_classic()
+
+```
+
+### Model Success
+```{r}
+#store in as probabilities
+blr_fitted <- palmetto_blr %>% 
+  broom::augment(type.predict = "response")
+
+#convert .fitted value to prediction based on 50% probability threshold
+sp_prediction_df <- blr_fitted %>% 
+  mutate(sp_prediction = 
+           if_else(.fitted < .5, "Sabal etonia", "Serenoa repens")) %>% 
+  mutate(prediction_correct = 
+           if_else(species == sp_prediction, "yes", "no"))
+
+#make an initial table of counts
+palmetto_prediction_counts <- sp_prediction_df %>% 
+  tabyl(species, prediction_correct)
+
+#table with proportions using adorn()
+palmetto_table_proportions <- palmetto_prediction_counts %>% 
+  janitor::adorn_percentages() %>% 
+  janitor::adorn_pct_formatting(digits = 2) %>% 
+janitor::adorn_ns()
+
+#finalized table using kable extra package
+palmetto_table_proportions %>%  
+  kbl(caption = "Palmetto species and model prediction accuracy (Data: Abrahamson)",
+      col.names = c("Species", 
+                    "Not Accurately Predicted", 
+                    "Accurately Predicted")
+      ) %>%
+    kable_classic(font ="cambria")
+```
+
+### Data Citation
+Abrahamson, W.G. 2019. Survival, growth and biomass estimates of two dominant palmetto species of south-central Florida from 1981 - 2017, ongoing at 5-year intervals ver 1. Environmental Data Initiative. https://doi.org/10.6073/pasta/f2f96ec76fbbd4b9db431c79a770c4d5

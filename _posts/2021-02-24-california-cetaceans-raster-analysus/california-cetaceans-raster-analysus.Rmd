@@ -1,0 +1,80 @@
+---
+title: "California Cetaceans Raster Analysus"
+description: |
+  In this post I will explore cetaceans species presence off of the coast of southern California using raster data!
+author:
+  - name: iris foxfoot
+    url: {}
+date: 02-24-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: show code
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+library(raster) ### NOTE: attaching this BEFORE tidyverse
+library(tidyverse)
+library(here)
+library(sf)
+```
+
+```{r}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(raster) ### NOTE: attaching this BEFORE tidyverse
+library(tidyverse)
+library(here)
+library(sf)
+```
+
+```{r, echo = T, results = "hide"}
+#read in the data (this gathers it all up)
+my_files <- list.files(here("ca_cetaceans"), full.names = TRUE)
+
+#this reads in the data as a raster stack
+cetaceans_raster <- raster::stack(my_files)
+
+#this function determines if a cell has a .8 probability of containing a species.
+is_present <- function(x, thresh = .8) {
+  y <- ifelse(x >= thresh, 1, NA)
+  return(y)
+}
+
+#applying the function to the raster stack
+species <- calc(cetaceans_raster, fun = is_present) 
+
+#adding up all the species presences in each cell
+cetaceans <- calc(species, fun = sum, na.rm = TRUE)  
+
+#plot it! For funsies
+#plot(cetaceans)
+
+#this converts the raster to a dataframe
+cetaceans_df <- raster::rasterToPoints(cetaceans) %>%
+  as.data.frame()
+
+#add some coastline from the rnaturalearth package
+coastline110 <- rnaturalearth::ne_download(scale = 110, type = 'states', category = 'cultural', returnclass = "sf")
+
+#graph it
+ggplot() + 
+  geom_raster(data = cetaceans_df, aes(x=x,y=y, fill = layer)) + geom_sf(data = coastline110, color = "black", fill = "darkgray") + 
+  coord_sf(expand = 0, xlim = c(-125, -115), ylim = c(32, 42)) +
+  scale_fill_gradientn(colors = c("white", "orchid","purple")) +
+  theme_void() +
+  theme(plot.caption = element_text(hjust = 0)) +
+  labs(caption = "Species Richness of of the Coast of Southern California and Northern Baja\neach cell shows the number of cetaceans for which there is an 80% chance\nor higher that they are present. Data: Kaschner et al")
+```
+
+
+**Aquamaps Citation**: Kaschner, K., Rius-Barile, J., Kesner-Reyes, K., Garilao, C., Kullander, S., Rees, T., & Froese, R. (2016). AquaMaps: Predicted range maps for aquatic species. www.aquamaps.org 
