@@ -28,8 +28,8 @@ library(kableExtra)
 library(knitr)
 ```
 
-### Data Exploration & Vizualization
-```{r}
+### Data Exploration & Visualization
+```{r, fig.width=8}
 #Read in the Data
 palmetto <- read_csv(here("palmetto.csv"))
 
