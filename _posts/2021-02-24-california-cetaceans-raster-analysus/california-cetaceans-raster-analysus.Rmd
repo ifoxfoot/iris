@@ -11,9 +11,13 @@ output:
     self_contained: false
     code_folding: show code
 ---
+In this blog I will demonstrate some simple raster data manuvers. Raster data is a type of spatial data used to describe continuous variables. Since actual continuity is infinitely large (way to big for github), raster data breaks up space into cells, and each cell carries specific information about continuous variable in question. 
 
+In this example each cell carries information about how many cetacean species *could* be present. More accurately, each cell contains a probability that a species is present. 
 
-```{r setup, include=FALSE}
+click "show code" to see which packages I used!
+
+```{r setup, include=T}
 knitr::opts_chunk$set(
 	echo = FALSE,
 	message = FALSE,
@@ -25,17 +29,7 @@ library(here)
 library(sf)
 ```
 
-```{r}
-knitr::opts_chunk$set(
-	echo = TRUE,
-	message = FALSE,
-	warning = FALSE
-)
-library(raster) ### NOTE: attaching this BEFORE tidyverse
-library(tidyverse)
-library(here)
-library(sf)
-```
+In this next code chunk I'll read in a bunch of raster files into a 'raster stack' then I'll create a function to determine which species are 80% likely to occur in each cell, then I add all the rasters in the stack up. Finally I'll convert it to a dataframe and graph it!
 
 ```{r, echo = T, results = "hide"}
 #read in the data (this gathers it all up)
@@ -68,13 +62,12 @@ coastline110 <- rnaturalearth::ne_download(scale = 110, type = 'states', categor
 
 #graph it
 ggplot() + 
-  geom_raster(data = cetaceans_df, aes(x=x,y=y, fill = layer)) + geom_sf(data = coastline110, color = "black", fill = "darkgray") + 
+  geom_raster(data = cetaceans_df, aes(x=x,y=y, fill = layer)) + geom_sf(data = coastline110, color = "black", fill = "gray") + 
   coord_sf(expand = 0, xlim = c(-125, -115), ylim = c(32, 42)) +
   scale_fill_gradientn(colors = c("white", "orchid","purple")) +
   theme_void() +
   theme(plot.caption = element_text(hjust = 0)) +
   labs(caption = "Species Richness of of the Coast of Southern California and Northern Baja\neach cell shows the number of cetaceans for which there is an 80% chance\nor higher that they are present. Data: Kaschner et al")
 ```
-
 
 **Aquamaps Citation**: Kaschner, K., Rius-Barile, J., Kesner-Reyes, K., Garilao, C., Kullander, S., Rees, T., & Froese, R. (2016). AquaMaps: Predicted range maps for aquatic species. www.aquamaps.org 
