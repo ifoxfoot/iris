@@ -1,0 +1,73 @@
+---
+title: "Mapping Oil Spills"
+description: |
+  A short example of working with spatial data.
+author:
+  - name: iris foxfoot
+    url: {}
+date: 03-02-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: show code
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+library(tidyverse)
+library(here)
+library(janitor)
+library(sf)
+library(tmap)
+library(gstat)
+library(stars)
+library(sp)
+```
+
+In this post I'm going to do some minor wrangling of spatial data. I'm using oil spills in California as a somewhat depressing example. First we'll read in the data and make an interactive map, where each point represents an oil spill!  
+
+```{r}
+#read in the oil spill data, pipe straight into janitor::clean_names(), so that all column names are coder friendly
+oil_spill <- read_sf(here("Oil_Spill_Incident_Tracking_%5Bds394%5D-shp")) %>% 
+  clean_names()
+
+#read in county shapefile, again cleaning the names. select the names of the counties, the spatial data will come along with it!
+ca_counties <- read_sf(here("ca_counties"), layer = "CA_Counties_TIGER2016") %>% 
+  clean_names() %>% 
+  dplyr::select(name)
+
+#note, check the projection using st_crs(). In this case the oil spill data and the counties data are in the same projection.
+
+#set tmap to interactive mode
+tmap_mode("view")
+
+#make an interactive map!
+tm_shape(oil_spill) +
+  tm_dots("dfgcontrol", legend.show = FALSE)
+```
+
+Now we'll make a chloropleth. What's that you say? A chloropleth map is just a map that uses different colors to show an aggregate statistical variable in a given region. In this case we're going to color the counties of California based on how may oil spills were recorded there in 2008. 
+
+```{r}
+#join oil spill and counties data for chloropleth
+ca_oil_spill <- ca_counties %>% 
+  st_join(oil_spill)
+
+#find counts by county
+oil_spill_counts <- ca_oil_spill %>% 
+  count(name)
+
+#plot chloropleth
+ggplot(data = oil_spill_counts) + 
+  geom_sf(aes(fill = n), color = "black", size = 0.2) + scale_fill_gradientn(colors = c("white", "orchid","purple")) +
+  theme_void() + #theme_void() is great for maps!
+  labs(fill = "number of oil spills", 
+       title = "California Oil Spills in 2008")
+```
+
+
+**Data Citation**: California Department of Fish and Game, Office of Spill Prevention and Response. 2008. [https://map.dfg.ca.gov/metadata/ds0394.html](https://map.dfg.ca.gov/metadata/ds0394.html)
