@@ -1,6 +1,6 @@
 ---
 title: "Iris"
-image: "cat.jpeg"
+image: "me.JPG"
 links:
   - label: LinkedIn
     url: "https://www.linkedin.com/in/iris-foxfoot-61958b202/"
