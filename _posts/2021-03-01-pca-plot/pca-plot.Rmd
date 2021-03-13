@@ -80,7 +80,7 @@ So how do you interpret a PCA biplot? There's a lot that goes into a PCA biplot,
 
 - The number of Gelada monkeys and the number of Ethiopian wolves are positively correlated. This result upholds Dr. Venkataraman's study!
 
-- Geladas are moderately negatively correlated with harrier species and Augur Buzzards, while Geladas and Tawny Eagles are more negatively correlated. Interesting!
+- Geladas are moderately negatively correlated with Augur Buzzards, while Geladas and Tawny Eagles are more negatively correlated. Interesting!
 
 - Augur Buzzards and harrier species are very negatively correlated. This is a great example of a pattern I never would have investigated if I hadn't used PCA as an exploratory tool. Always explore your data!
 
