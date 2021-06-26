@@ -4,7 +4,7 @@ description: |
   Iris Foxfoot
 output_dir: "docs"
 navbar:
-  logo: foxfoot.png
+  logo: jumpingfox.png
   right:
     - text: "Home"
       href: index.html
