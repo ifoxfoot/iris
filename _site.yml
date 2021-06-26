@@ -1,9 +1,10 @@
 name: "."
 title: "Iris"
 description: |
-  iris foxfoot
+  Iris Foxfoot
 output_dir: "docs"
 navbar:
+  logo: foxfoot.png
   right:
     - text: "Home"
       href: index.html
