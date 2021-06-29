@@ -2,6 +2,7 @@ name: "."
 title: "Iris"
 description: |
   Iris Foxfoot
+theme: theme.css
 output_dir: "docs"
 navbar:
   logo: jumpingfox.png
