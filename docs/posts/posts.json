@@ -87,7 +87,7 @@
   {
     "path": "posts/2021-01-30-welcome/",
     "title": "welcome",
-    "description": "Welcome to my blog!",
+    "description": "Welcome to my portfolio!",
     "author": [
       {
         "name": "iris foxfoot",
@@ -96,9 +96,9 @@
     ],
     "date": "2021-01-30",
     "categories": [],
-    "contents": "\n\n\n\n",
-    "preview": {},
-    "last_modified": "2021-01-30T09:04:14-08:00",
+    "contents": "\nHere I will showcase examples of my data analysis projects, visualizations, and environmental writing! Enjoy!\nMt Hood, August 2021\n\n\n",
+    "preview": "posts/2021-01-30-welcome/mt_hood.jpeg",
+    "last_modified": "2021-09-07T12:41:11-07:00",
     "input_file": {}
   }
 ]

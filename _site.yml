@@ -5,13 +5,14 @@ description: |
 theme: theme.css
 output_dir: "docs"
 navbar:
+  search: false
   logo: jumpingfox.png
   right:
     - text: "Home"
       href: index.html
     - text: "About Me"
       href: about.html
-    - text: "Data Analysis Examples"
+    - text: "Portfolio"
       href: blog.html
     - text: "CV"
       href: cv.html

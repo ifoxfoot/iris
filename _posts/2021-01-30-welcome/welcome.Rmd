@@ -1,6 +1,7 @@
 ---
 title: "welcome"
-description: Welcome to my blog!
+description: Welcome to my portfolio!
+preview: mt_hood.jpeg
 author:
   - name: iris foxfoot
 date: 01-30-2021
@@ -9,10 +10,10 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+Here I will showcase examples of my data analysis projects, visualizations, and environmental writing! Enjoy!
 
-
+![Mt Hood, August 2021](mt_hood.jpeg)
 
