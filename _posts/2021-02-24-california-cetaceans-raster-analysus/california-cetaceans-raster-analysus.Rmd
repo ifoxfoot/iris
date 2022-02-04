@@ -58,16 +58,23 @@ cetaceans_df <- raster::rasterToPoints(cetaceans) %>%
   as.data.frame()
 
 #add some coastline from the rnaturalearth package
-coastline110 <- rnaturalearth::ne_download(scale = 110, type = 'states', category = 'cultural', returnclass = "sf")
+coastline110 <- rnaturalearth::ne_download(scale = 110, 
+                                           type = 'states', 
+                                           category = 'cultural', 
+                                           returnclass = "sf")
 
 #graph it
 ggplot() + 
-  geom_raster(data = cetaceans_df, aes(x=x,y=y, fill = layer)) + geom_sf(data = coastline110, color = "black", fill = "white") + 
+  geom_raster(data = cetaceans_df, aes(x=x,y=y, fill = layer)) + 
+  geom_sf(data = coastline110, color = "black", fill = "white") + 
   coord_sf(expand = 0, xlim = c(-125, -115), ylim = c(32, 42)) +
   scale_fill_gradientn(colors = c("white", "009933","006633")) +
   theme_void() +
   theme(plot.caption = element_text(hjust = 0)) +
-  labs(caption = "Species Richness of of the Coast of Southern California and Northern Baja\neach cell shows the number of cetaceans for which there is an 80% chance\nor higher that they are present. Data: Kaschner et al")
+  labs(caption = 
+         "Species Richness of of the Coast of Southern California and Northern Baja
+each cell shows the number of cetaceans for which there is an 80% chance
+or higher that they are present.Data: Kaschner et al")
 ```
 
 **Aquamaps Citation**: Kaschner, K., Rius-Barile, J., Kesner-Reyes, K., Garilao, C., Kullander, S., Rees, T., & Froese, R. (2016). AquaMaps: Predicted range maps for aquatic species. www.aquamaps.org 

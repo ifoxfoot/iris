@@ -54,11 +54,16 @@ sky_focals_limited$harrier_sp <- as.numeric(sky_focals_limited$harrier_sp)
 sky_focals_limited$e_wolves <- as.numeric(sky_focals_limited$e_wolves)
 
 #changing the names of columns
-colnames(sky_focals_limited) = c("Number of Geladas", "Augur Buzzards", "Tawny Eagles", "Harriers", "Ethiopian Wolves")
+colnames(sky_focals_limited) = c("Number of Geladas", 
+                                 "Augur Buzzards", 
+                                 "Tawny Eagles", 
+                                 "Harriers", 
+                                 "Ethiopian Wolves")
 
 #PCA
 sky_focal_pca <- sky_focals_limited %>%
-  scale() %>% #I used the scale function to limit the impact that Geladas would have on the variance. It is normal to have 300+ Geladas in a troop, but not normal for birds of prey to group together.
+  scale() %>% #I used the scale function to limit the impact that Geladas would have on the variance. 
+  #It is normal to have 300+ Geladas in a troop, but not normal for birds of prey to group together.
   prcomp()
 
 #call to view
@@ -71,7 +76,9 @@ autoplot(sky_focal_pca,
          loadings.label = TRUE,
          loadings.label.hjust = 1.2) +
   theme_classic() +
-  labs(caption = "Principle Component Analysis Bi-plot Showing Species Associations in the Highlands of Ethiopia. Data and Graph: Iris foxfoot") 
+  labs(caption = 
+         "Principle Component Analysis Bi-plot Showing Species Associations in the Highlands of Ethiopia.
+Data and Graph: Iris foxfoot") 
 ```
 
 ## Conclusions

@@ -1532,16 +1532,23 @@ show code
   <span class='fu'><a href='https://rdrr.io/pkg/raster/man/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'>#add some coastline from the rnaturalearth package</span>
-<span class='va'>coastline110</span> <span class='op'>&lt;-</span> <span class='fu'>rnaturalearth</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rnaturalearth/man/ne_download.html'>ne_download</a></span><span class='op'>(</span>scale <span class='op'>=</span> <span class='fl'>110</span>, type <span class='op'>=</span> <span class='st'>'states'</span>, category <span class='op'>=</span> <span class='st'>'cultural'</span>, returnclass <span class='op'>=</span> <span class='st'>"sf"</span><span class='op'>)</span>
+<span class='va'>coastline110</span> <span class='op'>&lt;-</span> <span class='fu'>rnaturalearth</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rnaturalearth/man/ne_download.html'>ne_download</a></span><span class='op'>(</span>scale <span class='op'>=</span> <span class='fl'>110</span>, 
+                                           type <span class='op'>=</span> <span class='st'>'states'</span>, 
+                                           category <span class='op'>=</span> <span class='st'>'cultural'</span>, 
+                                           returnclass <span class='op'>=</span> <span class='st'>"sf"</span><span class='op'>)</span>
 
 <span class='co'>#graph it</span>
 <span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>geom_raster</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>cetaceans_df</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>,y<span class='op'>=</span><span class='va'>y</span>, fill <span class='op'>=</span> <span class='va'>layer</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'>geom_sf</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>coastline110</span>, color <span class='op'>=</span> <span class='st'>"black"</span>, fill <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_raster</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>cetaceans_df</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>,y<span class='op'>=</span><span class='va'>y</span>, fill <span class='op'>=</span> <span class='va'>layer</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_sf</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>coastline110</span>, color <span class='op'>=</span> <span class='st'>"black"</span>, fill <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'>coord_sf</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fl'>0</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>125</span>, <span class='op'>-</span><span class='fl'>115</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>32</span>, <span class='fl'>42</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>scale_fill_gradientn</span><span class='op'>(</span>colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"white"</span>, <span class='st'>"009933"</span>,<span class='st'>"006633"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>theme_void</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>theme</span><span class='op'>(</span>plot.caption <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Species Richness of of the Coast of Southern California and Northern Baja\neach cell shows the number of cetaceans for which there is an 80% chance\nor higher that they are present. Data: Kaschner et al"</span><span class='op'>)</span>
+  <span class='fu'>labs</span><span class='op'>(</span>caption <span class='op'>=</span> 
+         <span class='st'>"Species Richness of of the Coast of Southern California and Northern Baja
+each cell shows the number of cetaceans for which there is an 80% chance
+or higher that they are present.Data: Kaschner et al"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </details>

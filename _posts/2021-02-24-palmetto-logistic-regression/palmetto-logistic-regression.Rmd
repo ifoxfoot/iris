@@ -61,7 +61,11 @@ ggplot(data = palmetto, aes(x = width, y = length, fill = species)) +
   theme_minimal() +
   theme(plot.caption = element_text(hjust = 0), legend.position = "none") +
   labs(x = "width (cm)", y = "length (cm)",
-       caption = "Figure 1: Width and length of Sabal etonia vs Serenoa repens palmettos in South Central Florida (Data: Abrahamson)\nLength is defined as the widest area of the canopy and width is the widest area of the canpopy perpendicular to the \nlength. From this graph you can see that Sabal etonia has a slightly larger mean length.")
+       caption = 
+      "Figure 1: Width and length of Sabal etonia vs Serenoa repens palmettos in South Central Florida
+(Data: Abrahamson) Length is defined as the widest area of the canopy and width is the widest area
+of the canpopy perpendicular to the length. From this graph you can see that Sabal etonia has a
+slightly larger mean length.")
 
 #another ggplot exploring height and number of green leaves
 ggplot(data = palmetto, aes(x = green_lvs, y = height, color = species)) + 
@@ -70,7 +74,10 @@ ggplot(data = palmetto, aes(x = green_lvs, y = height, color = species)) +
   theme_minimal() +
   theme(plot.caption = element_text(hjust = 0)) +
   labs(x = "Number of Green Leaves", y = "Height (cm)",
-       caption = "Figure 2. Differences in number of green leaves vs height in Sabal Etonia and Serenoa repens (Data: Abrahamson)\nSerenoa repens tends to have a higher number of green leaves. It is difficult to tell if there is a meaningful difference in \nheight")
+       caption = 
+         "Figure 2. Differences in number of green leaves vs height in Sabal Etonia and Serenoa repens
+(Data: Abrahamson) Serenoa repens tends to have a higher number of green leaves. It is difficult
+to tell if there is a meaningful difference in height")
 
 ```
 
@@ -85,14 +92,17 @@ Visualization isn't just for the exploratory phase, it's a great tool for organi
 #seet is first level
 
 #binomial regression
-palmetto_blr <- glm(species ~ height + width + length + green_lvs, data = palmetto, family = "binomial")
+palmetto_blr <- glm(species ~ height + width + length + green_lvs, 
+                    data = palmetto, 
+                    family = "binomial")
 
 #call the model to view or summary of the model using summary()
 
 #tidy table
 broom::tidy(palmetto_blr) %>%
   mutate(p.value = format(p.value, scientific = TRUE)) %>% 
-  kbl(caption = "Palmetto Binary Logistic Regression Model Outputs - Reference Level = Sabal etonia (Data: Abrahamson)") %>% 
+  kbl(caption = 
+        "Palmetto Binary Logistic Regression Model Outputs - Reference Level = Sabal etonia (Data: Abrahamson)") %>% 
   kable_classic()
 
 ```

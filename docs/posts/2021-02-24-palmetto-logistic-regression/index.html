@@ -2194,7 +2194,7 @@ show code
 </summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Read in the Data</span>
-<span class='va'>palmetto</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/here/man/here.html'>here</a></span><span class='op'>(</span><span class='st'>"palmetto.csv"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>palmetto</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"palmetto.csv"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>#rename species category because it's annoying</span>
 <span class='va'>palmetto</span><span class='op'>$</span><span class='va'>species</span><span class='op'>[</span><span class='va'>palmetto</span><span class='op'>$</span><span class='va'>species</span> <span class='op'>==</span> <span class='st'>"1"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"Serenoa repens"</span>
@@ -2214,7 +2214,11 @@ show code
   <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>theme</span><span class='op'>(</span>plot.caption <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>, legend.position <span class='op'>=</span> <span class='st'>"none"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"width (cm)"</span>, y <span class='op'>=</span> <span class='st'>"length (cm)"</span>,
-       caption <span class='op'>=</span> <span class='st'>"Figure 1: Width and length of Sabal etonia vs Serenoa repens palmettos in South Central Florida (Data: Abrahamson)\nLength is defined as the widest area of the canopy and width is the widest area of the canpopy perpendicular to the \nlength. From this graph you can see that Sabal etonia has a slightly larger mean length."</span><span class='op'>)</span>
+       caption <span class='op'>=</span> 
+      <span class='st'>"Figure 1: Width and length of Sabal etonia vs Serenoa repens palmettos in South Central Florida
+(Data: Abrahamson) Length is defined as the widest area of the canopy and width is the widest area
+of the canpopy perpendicular to the length. From this graph you can see that Sabal etonia has a
+slightly larger mean length."</span><span class='op'>)</span>
 </code></pre>
 </div>
 </details>
@@ -2231,7 +2235,10 @@ show code
   <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>theme</span><span class='op'>(</span>plot.caption <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Number of Green Leaves"</span>, y <span class='op'>=</span> <span class='st'>"Height (cm)"</span>,
-       caption <span class='op'>=</span> <span class='st'>"Figure 2. Differences in number of green leaves vs height in Sabal Etonia and Serenoa repens (Data: Abrahamson)\nSerenoa repens tends to have a higher number of green leaves. It is difficult to tell if there is a meaningful difference in \nheight"</span><span class='op'>)</span>
+       caption <span class='op'>=</span> 
+         <span class='st'>"Figure 2. Differences in number of green leaves vs height in Sabal Etonia and Serenoa repens
+(Data: Abrahamson) Serenoa repens tends to have a higher number of green leaves. It is difficult
+to tell if there is a meaningful difference in height"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </details>
@@ -2250,14 +2257,17 @@ show code
 <span class='co'>#seet is first level</span>
 
 <span class='co'>#binomial regression</span>
-<span class='va'>palmetto_blr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>species</span> <span class='op'>~</span> <span class='va'>height</span> <span class='op'>+</span> <span class='va'>width</span> <span class='op'>+</span> <span class='va'>length</span> <span class='op'>+</span> <span class='va'>green_lvs</span>, data <span class='op'>=</span> <span class='va'>palmetto</span>, family <span class='op'>=</span> <span class='st'>"binomial"</span><span class='op'>)</span>
+<span class='va'>palmetto_blr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>species</span> <span class='op'>~</span> <span class='va'>height</span> <span class='op'>+</span> <span class='va'>width</span> <span class='op'>+</span> <span class='va'>length</span> <span class='op'>+</span> <span class='va'>green_lvs</span>, 
+                    data <span class='op'>=</span> <span class='va'>palmetto</span>, 
+                    family <span class='op'>=</span> <span class='st'>"binomial"</span><span class='op'>)</span>
 
 <span class='co'>#call the model to view or summary of the model using summary()</span>
 
 <span class='co'>#tidy table</span>
-<span class='fu'>broom</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/generics/man/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>palmetto_blr</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>broom</span><span class='fu'>::</span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>palmetto_blr</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>mutate</span><span class='op'>(</span>p.value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='va'>p.value</span>, scientific <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/kbl.html'>kbl</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Palmetto Binary Logistic Regression Model Outputs - Reference Level = Sabal etonia (Data: Abrahamson)"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/kbl.html'>kbl</a></span><span class='op'>(</span>caption <span class='op'>=</span> 
+        <span class='st'>"Palmetto Binary Logistic Regression Model Outputs - Reference Level = Sabal etonia (Data: Abrahamson)"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/kable_classic.html'>kable_classic</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2385,7 +2395,7 @@ show code
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#store in as probabilities</span>
 <span class='va'>blr_fitted</span> <span class='op'>&lt;-</span> <span class='va'>palmetto_blr</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>broom</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/generics/man/augment.html'>augment</a></span><span class='op'>(</span>type.predict <span class='op'>=</span> <span class='st'>"response"</span><span class='op'>)</span>
+  <span class='fu'>broom</span><span class='fu'>::</span><span class='fu'><a href='https://generics.r-lib.org/reference/augment.html'>augment</a></span><span class='op'>(</span>type.predict <span class='op'>=</span> <span class='st'>"response"</span><span class='op'>)</span>
 
 <span class='co'>#convert .fitted value to prediction based on 50% probability threshold</span>
 <span class='va'>sp_prediction_df</span> <span class='op'>&lt;-</span> <span class='va'>blr_fitted</span> <span class='op'>%&gt;%</span> 

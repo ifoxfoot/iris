@@ -1507,11 +1507,16 @@ show code
 <span class='va'>sky_focals_limited</span><span class='op'>$</span><span class='va'>e_wolves</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>sky_focals_limited</span><span class='op'>$</span><span class='va'>e_wolves</span><span class='op'>)</span>
 
 <span class='co'>#changing the names of columns</span>
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>sky_focals_limited</span><span class='op'>)</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Number of Geladas"</span>, <span class='st'>"Augur Buzzards"</span>, <span class='st'>"Tawny Eagles"</span>, <span class='st'>"Harriers"</span>, <span class='st'>"Ethiopian Wolves"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>sky_focals_limited</span><span class='op'>)</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Number of Geladas"</span>, 
+                                 <span class='st'>"Augur Buzzards"</span>, 
+                                 <span class='st'>"Tawny Eagles"</span>, 
+                                 <span class='st'>"Harriers"</span>, 
+                                 <span class='st'>"Ethiopian Wolves"</span><span class='op'>)</span>
 
 <span class='co'>#PCA</span>
 <span class='va'>sky_focal_pca</span> <span class='op'>&lt;-</span> <span class='va'>sky_focals_limited</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'>#I used the scale function to limit the impact that Geladas would have on the variance. It is normal to have 300+ Geladas in a troop, but not normal for birds of prey to group together.</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'>#I used the scale function to limit the impact that Geladas would have on the variance. </span>
+  <span class='co'>#It is normal to have 300+ Geladas in a troop, but not normal for birds of prey to group together.</span>
   <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'>#call to view</span>
@@ -1547,7 +1552,9 @@ show code
          loadings.label <span class='op'>=</span> <span class='cn'>TRUE</span>,
          loadings.label.hjust <span class='op'>=</span> <span class='fl'>1.2</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>theme_classic</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Principle Component Analysis Bi-plot Showing Species Associations in the Highlands of Ethiopia. Data and Graph: Iris foxfoot"</span><span class='op'>)</span> 
+  <span class='fu'>labs</span><span class='op'>(</span>caption <span class='op'>=</span> 
+         <span class='st'>"Principle Component Analysis Bi-plot Showing Species Associations in the Highlands of Ethiopia.
+Data and Graph: Iris foxfoot"</span><span class='op'>)</span> 
 </code></pre>
 </div>
 </details>

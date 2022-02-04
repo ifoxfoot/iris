@@ -9,8 +9,7 @@ links:
   - label: Email
     url: "mailto:foxfoot@ucsb.edu"
 site: distill::distill_website
-output: 
-  postcards::jolla
+output: postcards::jolla
 ---
  
 I'm Iris Foxfoot, a second-year master’s student at the Bren School of Environmental Science & Management at UCSB. Before graduate school I spent five years conducting wildlife surveys in the Sierra Nevada Mountains of California and in the highlands of Ethiopia. Now I focus on using data to make informed conservation decisions. You can find me trying out some new code, walking my dogs, or out snowboarding!

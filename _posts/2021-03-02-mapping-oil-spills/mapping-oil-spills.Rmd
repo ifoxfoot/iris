@@ -31,16 +31,19 @@ library(sp)
 In this post I'm going to do some minor wrangling of spatial data. I'm using oil spills in California as a somewhat depressing example. First we'll read in the data and make an interactive map, where each point represents an oil spill!  
 
 ```{r}
-#read in the oil spill data, pipe straight into janitor::clean_names(), so that all column names are coder friendly
+#read in the oil spill data, pipe straight into janitor::clean_names(), 
+#so that all column names are coder friendly
 oil_spill <- read_sf(here("Oil_Spill_Incident_Tracking_%5Bds394%5D-shp")) %>% 
   clean_names()
 
-#read in county shapefile, again cleaning the names. select the names of the counties, the spatial data will come along with it!
+#read in county shapefile, again cleaning the names. select the names of the 
+#counties, the spatial data will come along with it!
 ca_counties <- read_sf(here("ca_counties"), layer = "CA_Counties_TIGER2016") %>% 
   clean_names() %>% 
   dplyr::select(name)
 
-#note, check the projection using st_crs(). In this case the oil spill data and the counties data are in the same projection.
+#note, check the projection using st_crs(). In this case the oil spill data 
+#and the counties data are in the same projection.
 
 #set tmap to interactive mode
 tmap_mode("view")
@@ -63,11 +66,13 @@ oil_spill_counts <- ca_oil_spill %>%
 
 #plot chloropleth
 ggplot(data = oil_spill_counts) + 
-  geom_sf(aes(fill = n), color = "black", size = 0.2) + scale_fill_gradientn(colors = c("white", "orchid","purple")) +
+  geom_sf(aes(fill = n), color = "black", size = 0.2) + 
+  scale_fill_gradientn(colors = c("white", "orchid","purple")) +
   theme_void() + #theme_void() is great for maps!
   labs(fill = "number of oil spills", 
        title = "California Oil Spills in 2008")
 ```
 
+It looks like LA County and San Diego County have the most oil spills!
 
 **Data Citation**: California Department of Fish and Game, Office of Spill Prevention and Response. 2008. [https://map.dfg.ca.gov/metadata/ds0394.html](https://map.dfg.ca.gov/metadata/ds0394.html)
