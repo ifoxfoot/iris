@@ -41,7 +41,7 @@ It's always a good idea to look at your data in a few different ways before you 
 
 ```{r, fig.width=8}
 #Read in the Data
-palmetto <- read_csv(here("palmetto.csv"))
+palmetto <- read_csv(here("data","palmetto.csv"))
 
 #rename species category because it's annoying
 palmetto$species[palmetto$species == "1"] <- "Serenoa repens"
@@ -54,18 +54,17 @@ palmetto$species <-as.factor(palmetto$species)
 #1 = Serenoa repens, 2 = Sabal etonia
 
 #A ggplot graph showing width and length in the two species
-ggplot(data = palmetto, aes(x = width, y = length, fill = species)) + 
+ggplot(data = palmetto, aes(x = species, y = length, fill = species)) + 
   geom_violin() + 
-  facet_wrap(~species) + 
+  #facet_wrap(~species) + 
   scale_fill_manual(values=c('orange','black')) +
   theme_minimal() +
   theme(plot.caption = element_text(hjust = 0), legend.position = "none") +
-  labs(x = "width (cm)", y = "length (cm)",
+  labs(x = "Species", y = "length (cm)",
        caption = 
-      "Figure 1: Width and length of Sabal etonia vs Serenoa repens palmettos in South Central Florida
-(Data: Abrahamson) Length is defined as the widest area of the canopy and width is the widest area
-of the canpopy perpendicular to the length. From this graph you can see that Sabal etonia has a
-slightly larger mean length.")
+      "Figure 1: Length of Sabal etonia vs Serenoa repens palmettos in South Central Florida
+(Data: Abrahamson) Length is defined as the widest area of the canopy. From this graph you can see that
+Sabal etonia has a slightly larger mean length.")
 
 #another ggplot exploring height and number of green leaves
 ggplot(data = palmetto, aes(x = green_lvs, y = height, color = species)) + 

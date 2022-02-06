@@ -33,12 +33,12 @@ In this post I'm going to do some minor wrangling of spatial data. I'm using oil
 ```{r}
 #read in the oil spill data, pipe straight into janitor::clean_names(), 
 #so that all column names are coder friendly
-oil_spill <- read_sf(here("Oil_Spill_Incident_Tracking_%5Bds394%5D-shp")) %>% 
+oil_spill <- read_sf(here("data", "Oil_Spill_Incident_Tracking_%5Bds394%5D-shp")) %>% 
   clean_names()
 
 #read in county shapefile, again cleaning the names. select the names of the 
 #counties, the spatial data will come along with it!
-ca_counties <- read_sf(here("ca_counties"), layer = "CA_Counties_TIGER2016") %>% 
+ca_counties <- read_sf(here("data", "ca_counties"), layer = "CA_Counties_TIGER2016") %>% 
   clean_names() %>% 
   dplyr::select(name)
 

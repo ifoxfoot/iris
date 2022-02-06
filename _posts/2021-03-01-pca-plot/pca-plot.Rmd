@@ -38,7 +38,7 @@ No idea what a gelada monkey is? Here's a picture I took!
 ## PCA Plot
 ```{r, fig.width=8}
 #read in data stored then clean names and replace NA value with 0
-sky_focals <- read_excel(here("Sky_Focals_Complete.xls")) %>% 
+sky_focals <- read_excel(here("data", "Sky_Focals_Complete.xls")) %>% 
   clean_names() %>% 
   mutate_all(~replace(., is.na(.), 0))
 

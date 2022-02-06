@@ -1,0 +1,83 @@
+---
+title: "Sample Press Release"
+description: |
+  A short writing sample in the style of scientific journalism and a neat interactive figure
+preview: arundo.jpg
+author:
+  - name: iris foxfoot
+    url: {}
+date: 02-06-2022
+output:
+  distill::distill_article:
+    self_contained: false
+    code_folding: show code
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
+library(tidyverse)
+library(janitor)
+library(here)
+library(tmap)
+library(sf)
+```
+
+**Researchers prioritize invasive species removal**\
+Writen by Iris Foxfoot on February 6th, 2022
+\
+\
+
+Fire and water shouldn’t mix, but an invasive species in Southern California has changed that. Arundo is a supersized species of grass that grows near water in thick clusters, reaching up to 30 feet tall. It’s also highly flammable. In 2003, the Simi/Verdale Fire swept across the Santa Clara riverbed, using arundo as fuel. Normally, rivers act as a protective buffer against fire because native vegetation, not to mention rocks and water, tend to be less flammable.
+
+![Photo of Arundo being mechanically cleared. Photo Credit: Southern California Wetlands Recovery Project](arundo.jpg)
+
+Conservation planners in Ventura County are hoping to prevent the next catastrophic fire from crossing the riverbed by removing arundo from the equation. But the giant grass is everywhere, and removing it is expensive, so conservation planners have developed a framework to help prioritize places where arundo removal will meet multiple priorities.
+
+
+“Our first priority is to remove arundo where it is less likely to recolonize immediately, that way native plants have a chance to regrow” says Bri Baker, a graduate student at UC Santa Barbara. “After we’ve chosen a spot where arundo removal would be successful, we can consider other objectives such as creating wildlife habitat and reducing the risk of wildfire to communities” she added.
+
+
+To meet these objectives, conservation planners are looking for trees. Arundo prefers to grow in sunny, open areas, but given time it will colonize under native trees like cottonwoods, sycamores, and willows. Once arundo is established in these streamside forests--also known as riparian forests--it creates ladder fuel. Ladder fuels allow fires burning at ground level to climb up into the tree canopy, making the fire difficult to control.
+
+```{r message=FALSE, warning=FALSE, results = FALSE}
+#read in veg layer for lower Santa Clara Watershed, clean up shapes and names
+bios_veg_layer <- st_read(here("data", "bios_veg_layer", "ds983.gdb")) %>% 
+  filter(!st_is_empty(.)) %>% 
+  clean_names() %>% 
+  st_buffer(dist = 0)
+```
+```{r message=FALSE, warning=FALSE, results = TRUE}
+#filter for trees
+bios_veg_layer_forest <- bios_veg_layer %>% 
+  filter(calvegname %in% c("Black Cottonwood", 
+                           "Black Walnut", 
+                           "California Sycamore", 
+                           "Coast Live Oak", 
+                           "Fremont Cottonwood", 
+                           "Riparian Mixed Hardwood", 
+                           "Willow (tree)"))
+
+#set tmap to interactive mode
+tmap_mode("view")
+
+#make pretty map
+tm_basemap("Esri.WorldTopoMap") +
+tm_shape(bios_veg_layer_forest) +
+  tm_fill("calvegname", title = "Tree Species", style = "fixed",
+        palette = c("red", "orange", "yellow", "green", "turquoise", "blue", "purple")) +
+  tm_view(set.view = 12)
+```
+**Riparian forests are scattered along the Santa Clara River.** *Figure Description: An interactive map showing the location of Riparian Forests in the Santa Clara River. Zoom out and scroll around to see all fragments.*
+
+
+“Removing arundo in riparian forests meets two of our objectives. It’s a safer bet that arundo won’t re-invade as quickly under trees, because the shade really slows down its growth” says Baker, “and it also reduces the risk of an out-of-control wildfire.”
+
+
+Conservation planners are also ranking choices based on other criteria. “We’re also considering factors like how many rare species are found in the area, so we can restore habitat for them,” Baker says. “We’re hoping to provide a way to strategize arundo removal, so the people making these decisions can choose what they care about most, be it protection from wildfire, conserving rare species, etcetera, and then be able to look at which sites would fulfill that goal if arundo were removed” added Baker.
+
+\
+\
+
+Contact Information:\
+Iris Foxfoot \
+foxfoot(at)ucsb(dot)edu

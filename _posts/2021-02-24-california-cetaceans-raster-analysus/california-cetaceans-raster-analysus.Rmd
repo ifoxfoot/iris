@@ -33,7 +33,7 @@ In this next code chunk I'll read in a bunch of raster files into a 'raster stac
 
 ```{r, echo = T, results = "hide"}
 #read in the data (this gathers it all up)
-my_files <- list.files(here("ca_cetaceans"), full.names = TRUE)
+my_files <- list.files(here("data", "ca_cetaceans"), full.names = TRUE)
 
 #this reads in the data as a raster stack
 cetaceans_raster <- raster::stack(my_files)
