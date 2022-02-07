@@ -1,7 +1,7 @@
 ---
 title: "Sample Press Release"
 description: |
-  A short writing sample in the style of scientific journalism and a neat interactive figure
+  A short writing sample in the style of scientific journalism
 preview: arundo.jpg
 author:
   - name: iris foxfoot
@@ -73,7 +73,7 @@ tm_shape(bios_veg_layer_forest) +
 “Removing arundo in riparian forests meets two of our objectives. It’s a safer bet that arundo won’t re-invade as quickly under trees, because the shade really slows down its growth” says Baker, “and it also reduces the risk of an out-of-control wildfire.”
 
 
-Conservation planners are also ranking choices based on other criteria. “We’re also considering factors like how many rare species are found in the area, so we can restore habitat for them,” Baker says. “We’re hoping to provide a way to strategize arundo removal, so the people making these decisions can choose what they care about most, be it protection from wildfire, conserving rare species, etcetera, and then be able to look at which sites would fulfill that goal if arundo were removed” added Baker.
+Conservation planners are also ranking potential arundo removal locations based on other criteria. “We’re also considering factors like how many rare species are found in the area, so we can restore habitat for them,” Baker says. “We’re hoping to provide a way to strategize arundo removal, so the people making these decisions can choose what they care about most, be it protection from wildfire, conserving rare species, et cetera, and then be able to look at which sites would fulfill that goal if arundo were removed” added Baker.
 
 \
 \
